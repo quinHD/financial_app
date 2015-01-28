@@ -12,7 +12,7 @@
 	        $response = curl_exec( $curl_handler );
 	        curl_close( $curl_handler );
 			
-   			$this->assertEquals( $expected_answer, $response );
+   			$this -> assertEquals( $expected_answer, $response );
 	    }
 
 	    public function testPostExpenseAddsExpenseToDbAndReturnsTheId()
@@ -22,10 +22,11 @@
 		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses" );
 	        curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );
 	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "POST" );
+	        curl_setopt( $curl_handler, CURLOPT_POSTFIELDS, http_build_query( $new_expense ));
 	        $response = curl_exec( $curl_handler );
 	        curl_close( $curl_handler );
-			
-   			$this->assertGreaterThanOrEqual( 1, $response );
+
+   			$this -> assertGreaterThanOrEqual( 1, $response );
 	    }
 	}
 
