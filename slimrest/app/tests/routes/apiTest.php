@@ -14,6 +14,16 @@
    			$this -> assertGreaterThanOrEqual( $minimum_id_value, $response["content"] );
 	    }
 
+	    public function testPostExpenseReturnsMinusOneIfParametersAreInsufficient()
+	   	{
+	   		$new_expense = array( "amount" => 890.95 );
+	   		$expected_answer = -1;
+
+		    $response = $this -> execute_http_call( $new_expense );
+		    
+   			$this -> assertEquals( $expected_answer, $response["answer"] );
+	    }
+
 	    private function execute_http_call( $new_expense=null )
 	    {
 		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses" );
