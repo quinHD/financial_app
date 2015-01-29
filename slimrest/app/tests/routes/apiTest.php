@@ -33,6 +33,32 @@
    			$this->assertEquals( $expected_answer, $response["answer"] ); 
 	    }
 
+	    public function test_Get_Expense_Returns_An_Expense_From_One_Given_Id()
+	    {	
+	    	$expected_expense = array( "description" => "Proyector", "amount" => 599 );
+	    	
+	    	$id_inserted = $this -> populate_db( $expected_expense );
+
+		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/".$id_inserted );
+	        curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );
+	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "GET" );
+	        $response = curl_exec( $curl_handler );
+	        curl_close( $curl_handler );
+	        $response_decoded = json_decode( $response, true );
+
+	        $expense_received = $response_decoded["content"];
+
+   			$this->assertEquals( $expected_expense["description"], $expense_received["description"] ); 
+	    }
+
+	    private function populate_db( $expense )
+	    {
+	    	$response = $this -> execute_http_call( "POST", $expense );
+	    	$id_returned = $response["content"];
+
+	    	return $id_returned;
+	    }
+
 	    private function execute_http_call( $http_verb, $new_expense )
 	    {
 	    	if($http_verb == "GET")
