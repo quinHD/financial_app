@@ -27,10 +27,26 @@
 
 	});
 
-	$app->put( "/expenses/:id", function() use( $app )
+	$app->put( "/expenses/:id", function($id) use( $app )
 	{
+		$description = $app->request->put( "description" );
+		$amount 	 = $app->request->put( "amount" );
+		
+		$connection = getConnection();
+		$dbh = $connection-> prepare( "UPDATE expenses SET description = ?, amount = ?, created_at = NOW() WHERE id = ?" );
+		$dbh->bindParam( 1, $description );
+		$dbh->bindParam( 2, $amount );
+		$dbh->bindParam( 3, $id );
+		$dbh->execute();
+		$connection = null;
+		
 		$app -> response -> body( json_encode( array( "answer" => "OK")));	
+
 	});
+
+
+
+
 
 	function run_select( $id )
 	{
