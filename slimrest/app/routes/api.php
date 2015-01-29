@@ -19,9 +19,13 @@
 		catch( PDOException $e )
 		{
 			$app -> response -> body( json_encode( array( "answer" => -1)));	
-		}
-		
+		}		
 	});
 
+
+	$app->get( "/expenses/:id", function() use( $app )
+	{
+		$app->response->body("OK");
+	});
 
 ?>
