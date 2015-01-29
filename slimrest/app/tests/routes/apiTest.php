@@ -34,7 +34,9 @@
 	        $response = curl_exec( $curl_handler );
 	        curl_close( $curl_handler );
 
-   			$this->assertEquals( $expected_answer, $response ); 
+	        $response_decoded = json_decode( $response, true );
+
+   			$this->assertEquals( $expected_answer, $response_decoded["answer"] ); 
 	    }
 
 	    private function execute_http_call( $new_expense=null )
