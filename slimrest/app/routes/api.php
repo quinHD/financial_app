@@ -25,7 +25,7 @@
 
 	$app->get( "/expenses/:id", function() use( $app )
 	{
-		$app->response->body("OK");
+		$app -> response -> body( json_encode( array( "answer" => "OK")));
 	});
 
 ?>
