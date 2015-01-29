@@ -11,10 +11,10 @@
 			$db_handler -> bindParam( 1, $description );
 			$db_handler -> bindParam( 2, $amount );
 			$db_handler -> execute();
-			$expense = $connection -> lastInsertId();
+			$expense_id = $connection -> lastInsertId();
 			$connection = null;
 
-			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense )));
+			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense_id )));
 		}
 		catch( PDOException $e )
 		{
@@ -23,9 +23,16 @@
 	});
 
 
-	$app->get( "/expenses/:id", function() use( $app )
+	$app->get( "/expenses/:id", function( $id ) use( $app )
 	{
-		$app -> response -> body( json_encode( array( "answer" => "OK")));
+		$connection = getConnection();
+		$dbh = $connection-> prepare("SELECT * FROM expenses WHERE id = ?");
+		$dbh->bindParam(1, $id);
+		$dbh->execute();
+		$expense = $dbh->fetch();
+		$connection = null;
+
+		$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense)));
 	});
 
 ?>
