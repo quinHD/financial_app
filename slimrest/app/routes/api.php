@@ -1,4 +1,5 @@
 <?php
+
 	$app->post( "/expenses/", function() use( $app )
 	{
 		$description = $app -> request -> post( "description" );
@@ -6,15 +7,8 @@
 
 		try 
 		{
-			$connection = getConnection();
-			$db_handler = $connection -> prepare( "INSERT INTO expenses VALUES( null, ?, ?, NOW() )" );
-			$db_handler -> bindParam( 1, $description );
-			$db_handler -> bindParam( 2, $amount );
-			$db_handler -> execute();
-			$expense_id = $connection -> lastInsertId();
-			$connection = null;
-
-			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense_id )));
+			$expense_inserted_id = run_insert( $description, $amount );
+			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense_inserted_id )));
 		}
 		catch( PDOException $e )
 		{
@@ -22,8 +16,13 @@
 		}		
 	});
 
-
 	$app->get( "/expenses/:id", function( $id ) use( $app )
+	{
+		$expense = run_select( $id );
+		$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense)));
+	});
+
+	function run_select( $id )
 	{
 		$connection = getConnection();
 		$dbh = $connection-> prepare("SELECT * FROM expenses WHERE id = ?");
@@ -32,7 +31,20 @@
 		$expense = $dbh->fetch();
 		$connection = null;
 
-		$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense)));
-	});
+		return $expense;
+	}
+
+	function run_insert( $description, $amount )
+	{
+		$connection = getConnection();
+		$db_handler = $connection -> prepare( "INSERT INTO expenses VALUES( null, ?, ?, NOW() )" );
+		$db_handler -> bindParam( 1, $description );
+		$db_handler -> bindParam( 2, $amount );
+		$db_handler -> execute();
+		$expense_id = $connection -> lastInsertId();
+		$connection = null;
+
+		return $expense_id;
+	}
 
 ?>
