@@ -56,9 +56,10 @@
 
  		public function test_Put_Expense_Returns_Ok_If_Connection_Is_Ok()
 	    {
+	   		$dummy_id = 1;
 	   		$expected_answer = "OK";
 
-		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/1" );
+		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/".$dummy_id );
 	        curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );
 	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "PUT" );
 	        $response = curl_exec( $curl_handler );
