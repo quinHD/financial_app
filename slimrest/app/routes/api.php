@@ -4,7 +4,7 @@
 		$description = $app -> request -> post( "description" );
 		$amount		 = $app -> request -> post( "amount" );
 
-		if( isset( $description ) && isset( $amount ) ) 
+		try 
 		{
 			$connection = getConnection();
 			$db_handler = $connection -> prepare( "INSERT INTO expenses VALUES( null, ?, ?, NOW() )" );
@@ -16,9 +16,9 @@
 
 			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense )));
 		}
-		else
+		catch( PDOException $e )
 		{
-			$app -> response -> body( json_encode( array( "answer" => -1 )));	
+			$app -> response -> body( json_encode( array( "answer" => -1)));	
 		}
 		
 	});
