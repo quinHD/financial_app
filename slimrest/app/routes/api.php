@@ -27,6 +27,10 @@
 
 	});
 
+	$app->put( "/expenses/:id", function() use( $app )
+	{
+		$app -> response -> body("OK");
+	});
 
 	function run_select( $id )
 	{
