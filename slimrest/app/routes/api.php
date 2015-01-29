@@ -21,7 +21,7 @@
 		$expense = run_select( $id );
 		
 		if( $expense )
-			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense)));
+			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense )));
 		else
 			$app -> response -> body( json_encode( array( "answer" => -1)));	
 
@@ -30,10 +30,10 @@
 	function run_select( $id )
 	{
 		$connection = getConnection();
-		$dbh = $connection-> prepare("SELECT * FROM expenses WHERE id = ?");
-		$dbh->bindParam(1, $id);
-		$dbh->execute();
-		$expense = $dbh->fetch();
+		$dbh = $connection -> prepare( "SELECT * FROM expenses WHERE id = ?" );
+		$dbh -> bindParam( 1, $id );
+		$dbh -> execute();
+		$expense = $dbh -> fetch();
 		$connection = null;
 
 		return $expense;
