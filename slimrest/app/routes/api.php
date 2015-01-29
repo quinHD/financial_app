@@ -19,7 +19,12 @@
 	$app->get( "/expenses/:id", function( $id ) use( $app )
 	{
 		$expense = run_select( $id );
-		$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense)));
+		
+		if( $expense )
+			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense)));
+		else
+			$app -> response -> body( json_encode( array( "answer" => -1)));	
+
 	});
 
 	function run_select( $id )
