@@ -14,13 +14,12 @@
 			$expense = $connection -> lastInsertId();
 			$connection = null;
 
-			$app -> response -> body( json_encode( array("answer" => "OK", "content" => $expense )));
+			$app -> response -> body( $expense );
 		}
 		else
 		{
-			$app -> response -> body( json_encode( array("answer" => "OK" )));
+			$app -> response -> body( "OK" );
 		}
 	});
-
 
 ?>
