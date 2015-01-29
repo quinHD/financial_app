@@ -32,7 +32,6 @@
 	    	$id_inserted = $this -> populate_db( $expected_expense );
 
 	    	$response = $this -> execute_http_call( "GET", null, $id_inserted );
-
 	        $expense_received = $response[ "content" ];
 	        $answer_received = $response[ "answer" ];
 
@@ -48,7 +47,6 @@
 			$expense_id_to_get = -99;
 
 	    	$response = $this -> execute_http_call( "GET", null, $expense_id_to_get );
-
 	        $answer_received = $response[ "answer" ];
 
    			$this -> assertEquals( $expected_answer, $answer_received ); 
@@ -59,15 +57,9 @@
 	   		$dummy_id = 1;
 	   		$expected_answer = "OK";
 
-		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/".$dummy_id );
-	        curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );
-	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "PUT" );
-	        $response = curl_exec( $curl_handler );
-	        curl_close( $curl_handler );
-	        $response_decoded = json_decode( $response, true );
-	        
-	        $answer_received = $response_decoded[ "answer" ];
-			
+		   	$response = $this -> execute_http_call( "PUT", null, $dummy_id );
+			$answer_received = $response[ "answer" ];
+
    			$this -> assertEquals( $expected_answer, $answer_received );  
 	    }
 
