@@ -24,6 +24,19 @@
    			$this -> assertEquals( $expected_answer, $response["answer"] );
 	    }
 
+	    public function testGetExpenseReturnsOkIfConnectionIsOk()
+	    {
+	   		$expected_answer = "OK";
+
+		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/1" );
+	        curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );
+	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "GET" );
+	        $response = curl_exec( $curl_handler );
+	        curl_close( $curl_handler );
+			
+   			$this->assertEquals( $expected_answer, $response ); 
+	    }
+
 	    private function execute_http_call( $new_expense=null )
 	    {
 		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses" );
