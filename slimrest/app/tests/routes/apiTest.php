@@ -42,6 +42,18 @@
 
 	    }
 
+	    public function test_Get_Expense_Returns_Minus_One_If_The_Id_Given_Does_Not_Exist()
+	   	{
+	   		$expected_answer = -1;
+			$expense_id_to_get = -99;
+
+	    	$response = $this -> execute_http_call( "GET", null, $expense_id_to_get );
+
+	        $answer_received = $response[ "answer" ];
+
+   			$this -> assertEquals( $expected_answer, $answer_received ); 
+	    }
+
 	    private function populate_db( $expense )
 	    {
 	    	$response = $this -> execute_http_call( "POST", $expense );
