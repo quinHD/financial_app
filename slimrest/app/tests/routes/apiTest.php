@@ -85,6 +85,20 @@
    			$this -> assertEquals( $expected_expense[ "amount" ], $expense_received[ "amount" ] ); 
 	    }
 
+	    public function test_Put_Expense_Returns_Minus_One_If_One_Parameter_Is_Incorrect()
+	   	{
+	   		$original_expense = array( "description" => "Silla de escritorio", "amount" => 99 );
+	   		$new_fields = array( "description" => "", "amount" => 199 );
+	   		$expected_answer = -1;
+
+	   		$id_inserted = $this -> populate_db( $original_expense );
+
+		   	$response = $this -> execute_http_call( "PUT", $new_fields, $id_inserted );
+			$answer_received = $response[ "answer" ];
+
+   			$this -> assertEquals( $expected_answer, $answer_received );  
+	    }
+
 	    private function populate_db( $expense )
 	    {
 	    	$response = $this -> execute_http_call( "POST", $expense );
