@@ -108,7 +108,7 @@
 
 	    }
 
-	    public function test_Delete_Expense__Returns_Minus_One_If_The_Id_Given_Does_Not_Exist()
+	    public function test_Delete_Expense_Returns_Minus_One_If_The_Id_Given_Does_Not_Exist()
 	    {
 	   		$expected_answer = -1;
 
@@ -116,6 +116,19 @@
 	        $received_answer = $response[ "answer" ];
 
    			$this -> assertEquals( $expected_answer, $received_answer );
+	    }
+
+	    public function test_Delete_Expense_Returns_Ok_If_Connection_Is_Ok()
+	    {
+	   		$expected_answer = "OK";
+
+		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/" );
+	        curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );
+	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "GET" );
+	        $response = curl_exec( $curl_handler );
+	        curl_close( $curl_handler );
+			
+   			$this->assertEquals( $expected_answer, $response ); 
 	    }
 
 	    private function populate_db( $expense )
