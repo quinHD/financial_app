@@ -29,12 +29,7 @@
 
 	$app->get( "/expenses/", function() use( $app )
 	{
-
-		$connection = getConnection();
-		$dbh = $connection -> prepare( "SELECT * FROM expenses" );
-		$dbh -> execute();
-		$expenses = $dbh -> fetchAll();
-		$connection = null;
+		$expenses = run_select_all();
 
 		$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expenses )));
 
@@ -101,6 +96,17 @@
 		$connection = null;
 
 		return $expense;
+	}
+
+	function run_select_all()
+	{
+		$connection = getConnection();
+		$dbh = $connection -> prepare( "SELECT * FROM expenses" );
+		$dbh -> execute();
+		$expenses = $dbh -> fetch();
+		$connection = null;
+
+		return $expenses;
 	}
 
 	function run_insert( $description, $amount )
