@@ -128,18 +128,6 @@
    			$this -> assertEquals( $expected_answer, $answer_received ); 
 	    }
 
-	    public function test_Get_Expenses_Returns_All_The_Expenses()
-	    {
-	   		$expected_answer = "OK";
-
-	        $response = $this -> execute_http_call( "GET", null );
-	        $answer_received = $response[ "answer" ];
-	        $content_received = $response[ "content" ];
-			
-   			$this -> assertEquals( $expected_answer, $answer_received );
-   			$this -> assertNotEmpty( $content_received );
-	    }
-
 	    private function populate_db( $expense )
 	    {
 	    	$response = $this -> execute_http_call( "POST", $expense );
