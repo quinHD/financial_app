@@ -43,4 +43,4 @@ Temporary Items
 .apdisk
 
 vendor
-slimrest/Slim
+api/Slim

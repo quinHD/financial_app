@@ -141,7 +141,7 @@
 
 	    private function execute_http_call( $http_verb, $new_expense, $expense_id=null )
 	    {
-	    	$resource = "http://localhost:1000/slimrest/expenses/".$expense_id;
+	    	$resource = "http://localhost:1000/api/expenses/".$expense_id;
 	    	
 		    $curl_handler = curl_init( $resource );
 	    	curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );

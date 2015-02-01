@@ -2,7 +2,7 @@
 <phpunit colors="true">
     <testsuites>
         <testsuite name="Test for finacial app">
-            <directory  suffix=".php">./slimrest/app/tests/routes</directory>
+            <directory  suffix=".php">./api/app/tests/routes</directory>
         </testsuite>
     </testsuites>
 </phpunit>
