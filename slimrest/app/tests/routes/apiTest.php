@@ -127,8 +127,12 @@
 	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "GET" );
 	        $response = curl_exec( $curl_handler );
 	        curl_close( $curl_handler );
+
+	        $response_decoded = json_decode( $response, true );
+	        
+	        $answer_received = $response_decoded[ "answer" ];
 			
-   			$this->assertEquals( $expected_answer, $response ); 
+   			$this -> assertEquals( $expected_answer, $answer_received ); 
 	    }
 
 	    private function populate_db( $expense )
