@@ -46,7 +46,7 @@
 
 	$app->delete( "/expenses/", function() use( $app )
 	{
-		$app -> response -> body("OK");
+		$app -> response -> body( "OK" );
 	});
 
 
