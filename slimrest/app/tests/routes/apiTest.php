@@ -118,19 +118,12 @@
    			$this -> assertEquals( $expected_answer, $received_answer );
 	    }
 
-	    public function test_Delete_Expense_Returns_Ok_If_Connection_Is_Ok()
+	    public function test_Get_Expenses_Returns_Ok_If_Connection_Is_Ok()
 	    {
 	   		$expected_answer = "OK";
 
-		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/" );
-	        curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );
-	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "GET" );
-	        $response = curl_exec( $curl_handler );
-	        curl_close( $curl_handler );
-
-	        $response_decoded = json_decode( $response, true );
-	        
-	        $answer_received = $response_decoded[ "answer" ];
+	        $response = $this -> execute_http_call( "GET", null );
+	        $answer_received = $response[ "answer" ];
 			
    			$this -> assertEquals( $expected_answer, $answer_received ); 
 	    }
