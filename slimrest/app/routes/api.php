@@ -44,8 +44,14 @@
 	});
 
 
-	$app->delete( "/expenses/", function() use( $app )
+	$app->delete( "/expenses/:id", function( $id ) use( $app )
 	{
+		$connection = getConnection();
+		$dbh = $connection-> prepare( "DELETE FROM expenses WHERE id = ?" );
+		$dbh->bindParam( 1, $id );
+		$affected = $dbh->execute();
+		$connection = null;
+
 		$app -> response -> body( json_encode( array( "answer" => "OK" )));
 	});
 

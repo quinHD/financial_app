@@ -88,32 +88,22 @@
   			$this -> assertEquals( $expected_answer, $answer_received );  
 	    }
 
-	    public function test_Delete_Expense_Returns_Ok_If_Connection_Is_Ok()
-	    {
-	   		$expected_answer = "OK";
-
-		 	$response = $this -> execute_http_call( "DELETE", null );
-	        $answer_received = $response[ "answer" ];
-			
-   			$this -> assertEquals( $expected_answer, $answer_received );  
-	    }
 
 	    public function test_Delete_Expense_Removes_An_Expense_From_Givem_Id()
 	    {
-	    	$demo_expense = array( "description" => "Proyector", "amount" => 599 );
+	    	$demo_expense = array( "description" => "Archivador", "amount" => 399 );
 	   		$expected_delete_answer = "OK";
 	   		$expected_get_answer = -1;
 
 	   		$id_inserted = $this -> populate_db( $demo_expense );
 
 	    	$response = $this -> execute_http_call( "DELETE", null, $id_inserted );
-	        $delete_answer_received = $response[ "answer" ];
+	        $received_delete_answer = $response[ "answer" ];
 	        $response = $this -> execute_http_call( "GET", null, $id_inserted );
-	        $get_answer_received = $response[ "answer" ];
+	        $received_get_answer = $response[ "answer" ];
 
-
-   			$this -> assertEquals( $expected_delete_answer, $delete_answer_received );
-   			$this -> assertEquals( $expected_get_answer, $get_answer_received ); 
+   			$this -> assertEquals( $expected_delete_answer, $received_delete_answer );
+   			$this -> assertEquals( $expected_get_answer, $received_get_answer ); 
 
 	    }
 
