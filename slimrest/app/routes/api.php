@@ -31,7 +31,12 @@
 	{
 		$response = run_select_all();
 
-		$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $response["expenses"], "rows" => $response["rows"] )));
+		$response_array = array();
+		$response_array[ "answer" ] = "OK";
+		$response_array[ "content" ] = $response["expenses"];
+		$response_array[ "rows" ] = $response["rows"];
+
+		$app -> response -> body( json_encode( $response_array ));
 
 	});
 
@@ -50,7 +55,6 @@
 			$app -> response -> body( json_encode( array( "answer" => "OK" )));
 		}
 	});
-
 
 	$app->delete( "/expenses/:id", function( $id ) use( $app )
 	{
