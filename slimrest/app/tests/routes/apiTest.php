@@ -92,7 +92,7 @@
 	    {
 	   		$expected_answer = "OK";
 
-		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/1" );
+		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/" );
 	        curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );
 	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "DELETE" );
 	        $response = curl_exec( $curl_handler );

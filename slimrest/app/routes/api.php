@@ -41,7 +41,12 @@
 			run_update( $description, $amount, $id );
 			$app -> response -> body( json_encode( array( "answer" => "OK")));	
 		}
-		
+	});
+
+
+	$app->delete( "/expenses/", function() use( $app )
+	{
+		$app -> response -> body("OK");
 	});
 
 
