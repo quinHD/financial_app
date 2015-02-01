@@ -88,6 +88,19 @@
   			$this -> assertEquals( $expected_answer, $answer_received );  
 	    }
 
+	    public function test_Delete_Expense_Returns_Ok_If_Connection_Is_Ok()
+	    {
+	   		$expected_answer = "OK";
+
+		    $curl_handler = curl_init( "http://localhost:1000/slimrest/expenses/1" );
+	        curl_setopt( $curl_handler, CURLOPT_RETURNTRANSFER, true );
+	        curl_setopt( $curl_handler, CURLOPT_CUSTOMREQUEST, "DELETE" );
+	        $response = curl_exec( $curl_handler );
+	        curl_close( $curl_handler );
+			
+   			$this->assertEquals( $expected_answer, $response ); 
+	    }
+
 	    private function populate_db( $expense )
 	    {
 	    	$response = $this -> execute_http_call( "POST", $expense );
