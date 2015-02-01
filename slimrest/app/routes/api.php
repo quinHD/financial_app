@@ -27,6 +27,12 @@
 
 	});
 
+	$app->get( "/expenses/", function() use( $app )
+	{
+		$app -> response -> body("OK");
+
+	});
+
 	$app->put( "/expenses/:id", function( $id ) use( $app )
 	{
 		$description = $app->request->put( "description" );
@@ -52,7 +58,7 @@
 			$app -> response -> body( json_encode( array( "answer" => "OK" )));
 		else
 			$app -> response -> body( json_encode( array( "answer" => -1 )));
-		
+
 	});
 
 
