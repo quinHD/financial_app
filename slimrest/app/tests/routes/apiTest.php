@@ -52,17 +52,6 @@
    			$this -> assertEquals( $expected_answer, $answer_received ); 
 	    }
 
- 		public function test_Put_Expense_Returns_Ok_If_Connection_Is_Ok()
-	    {
-	   		$dummy_id = 1;
-	   		$expected_answer = "OK";
-
-		   	$response = $this -> execute_http_call( "PUT", null, $dummy_id );
-			$answer_received = $response[ "answer" ];
-
-   			$this -> assertEquals( $expected_answer, $answer_received );  
-	    }
-
 		public function test_Put_Change_Fields_Of_a_Given_Expense()
 	    {
 	   		$original_expense = array( "description" => "Silla de escritorio", "amount" => 99 );
@@ -96,7 +85,7 @@
 		   	$response = $this -> execute_http_call( "PUT", $new_fields, $id_inserted );
 			$answer_received = $response[ "answer" ];
 
-   			$this -> assertEquals( $expected_answer, $answer_received );  
+  			$this -> assertEquals( $expected_answer, $answer_received );  
 	    }
 
 	    private function populate_db( $expense )

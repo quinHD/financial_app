@@ -27,14 +27,21 @@
 
 	});
 
-	$app->put( "/expenses/:id", function($id) use( $app )
+	$app->put( "/expenses/:id", function( $id ) use( $app )
 	{
 		$description = $app->request->put( "description" );
 		$amount 	 = $app->request->put( "amount" );
 		
-		run_update( $description, $amount, $id );
+		if(( ctype_space( $description ) || $description == "" ) || ( ctype_space( $amount ) || $amount == "" ))
+		{
+			$app -> response -> body( json_encode( array( "answer" => -1)));	
+		}
+		else
+		{
+			run_update( $description, $amount, $id );
+			$app -> response -> body( json_encode( array( "answer" => "OK")));	
+		}
 		
-		$app -> response -> body( json_encode( array( "answer" => "OK")));	
 
 	});
 
