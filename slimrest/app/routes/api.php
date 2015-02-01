@@ -29,7 +29,14 @@
 
 	$app->get( "/expenses/", function() use( $app )
 	{
-		$app -> response -> body( json_encode( array( "answer" => "OK" )));
+
+		$connection = getConnection();
+		$dbh = $connection -> prepare( "SELECT * FROM expenses" );
+		$dbh -> execute();
+		$expenses = $dbh -> fetchAll();
+		$connection = null;
+
+		$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expenses )));
 
 	});
 
