@@ -23,7 +23,7 @@
 		if( $expense )
 			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense )));
 		else
-			$app -> response -> body( json_encode( array( "answer" => -1)));	
+			$app -> response -> body( json_encode( array( "answer" => -1 )));	
 
 	});
 
@@ -34,19 +34,19 @@
 		
 		if( argument_is_invalid( $description ) || argument_is_invalid( $amount ))
 		{
-			$app -> response -> body( json_encode( array( "answer" => -1)));	
+			$app -> response -> body( json_encode( array( "answer" => -1 )));	
 		}
 		else
 		{
 			run_update( $description, $amount, $id );
-			$app -> response -> body( json_encode( array( "answer" => "OK")));	
+			$app -> response -> body( json_encode( array( "answer" => "OK" )));
 		}
 	});
 
 
 	$app->delete( "/expenses/", function() use( $app )
 	{
-		$app -> response -> body( "OK" );
+		$app -> response -> body( json_encode( array( "answer" => "OK" )));
 	});
 
 
