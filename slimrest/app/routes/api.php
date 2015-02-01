@@ -46,8 +46,16 @@
 
 	$app->delete( "/expenses/:id", function( $id ) use( $app )
 	{
-		run_delete( $id );
-		$app -> response -> body( json_encode( array( "answer" => "OK" )));
+		$row_count = run_delete( $id );
+
+		if ($row_count > 0)
+		{
+			$app -> response -> body( json_encode( array( "answer" => "OK" )));
+		}
+		else
+		{
+			$app -> response -> body( json_encode( array( "answer" => -1 )));
+		}
 	});
 
 
@@ -56,8 +64,10 @@
 		$connection = getConnection();
 		$dbh = $connection-> prepare( "DELETE FROM expenses WHERE id = ?" );
 		$dbh->bindParam( 1, $id );
-		$affected = $dbh->execute();
+		$dbh->execute();
 		$connection = null;
+
+		return $dbh->rowCount();
 	}
 
 	function run_update( $description, $amount, $id )
