@@ -99,6 +99,7 @@
 
 	    	$response = $this -> execute_http_call( "DELETE", null, $id_inserted );
 	        $received_delete_answer = $response[ "answer" ];
+	        
 	        $response = $this -> execute_http_call( "GET", null, $id_inserted );
 	        $received_get_answer = $response[ "answer" ];
 
