@@ -32,7 +32,7 @@
 		$description = $app->request->put( "description" );
 		$amount 	 = $app->request->put( "amount" );
 		
-		if(( ctype_space( $description ) || $description == "" ) || ( ctype_space( $amount ) || $amount == "" ))
+		if( argument_is_invalid( $description ) || argument_is_invalid( $amount ))
 		{
 			$app -> response -> body( json_encode( array( "answer" => -1)));	
 		}
@@ -42,7 +42,6 @@
 			$app -> response -> body( json_encode( array( "answer" => "OK")));	
 		}
 		
-
 	});
 
 
@@ -80,6 +79,11 @@
 		$connection = null;
 
 		return $expense_id;
+	}
+
+	function argument_is_invalid( $var )
+	{
+		return ( ctype_space( $var ) || $var == "" );
 	}
 
 ?>
