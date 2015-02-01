@@ -118,14 +118,16 @@
    			$this -> assertEquals( $expected_answer, $received_answer );
 	    }
 
-	    public function test_Get_Expenses_Returns_Ok_If_Connection_Is_Ok()
+	    public function test_Get_Expenses_Returns_Result_Of_Query_In_Content()
 	    {
 	   		$expected_answer = "OK";
 
 	        $response = $this -> execute_http_call( "GET", null );
 	        $answer_received = $response[ "answer" ];
+	        $content_received = $response[ "content" ];
 			
-   			$this -> assertEquals( $expected_answer, $answer_received ); 
+   			$this -> assertEquals( $expected_answer, $answer_received );
+   			$this -> assertNotEmpty( $content_received );
 	    }
 
 	    private function populate_db( $expense )
