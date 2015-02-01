@@ -99,13 +99,23 @@
 
 	    	$response = $this -> execute_http_call( "DELETE", null, $id_inserted );
 	        $received_delete_answer = $response[ "answer" ];
-	        
+
 	        $response = $this -> execute_http_call( "GET", null, $id_inserted );
 	        $received_get_answer = $response[ "answer" ];
 
    			$this -> assertEquals( $expected_delete_answer, $received_delete_answer );
    			$this -> assertEquals( $expected_get_answer, $received_get_answer ); 
 
+	    }
+
+	    public function test_Delete_Expense__Returns_Minus_One_If_The_Id_Given_Does_Not_Exist()
+	    {
+	   		$expected_answer = -1;
+
+	    	$response = $this -> execute_http_call( "DELETE", null, 9999999 );
+	        $received_answer = $response[ "answer" ];
+
+   			$this -> assertEquals( $expected_answer, $received_answer );
 	    }
 
 	    private function populate_db( $expense )
