@@ -98,6 +98,25 @@
    			$this -> assertEquals( $expected_answer, $answer_received );  
 	    }
 
+	    public function test_Delete_Expense_Removes_An_Expense_From_Givem_Id()
+	    {
+	    	$demo_expense = array( "description" => "Proyector", "amount" => 599 );
+	   		$expected_delete_answer = "OK";
+	   		$expected_get_answer = -1;
+
+	   		$id_inserted = $this -> populate_db( $demo_expense );
+
+	    	$response = $this -> execute_http_call( "DELETE", null, $id_inserted );
+	        $delete_answer_received = $response[ "answer" ];
+	        $response = $this -> execute_http_call( "GET", null, $id_inserted );
+	        $get_answer_received = $response[ "answer" ];
+
+
+   			$this -> assertEquals( $expected_delete_answer, $delete_answer_received );
+   			$this -> assertEquals( $expected_get_answer, $get_answer_received ); 
+
+	    }
+
 	    private function populate_db( $expense )
 	    {
 	    	$response = $this -> execute_http_call( "POST", $expense );
