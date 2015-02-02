@@ -19,7 +19,7 @@
 
 		    $response = $this -> execute_http_call( "POST", $new_expense );
 		    
-   			$this -> assertEquals( $expected_answer, $response["answer"] );
+   			$this -> assertEquals( $expected_answer, $response);
 	    }
 
 	    public function test_Get_Expense_Returns_An_Expense_From_One_Given_Id()
