@@ -42,7 +42,7 @@
 			$expense_id_to_get = -99;
 
 	    	$response = $this -> execute_http_call( "GET", null, $expense_id_to_get );
-	        $answer_received = $response[ "answer" ];
+	        $answer_received = $response;
 
    			$this -> assertEquals( $expected_answer, $answer_received ); 
 	    }
