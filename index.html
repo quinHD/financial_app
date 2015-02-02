@@ -5,11 +5,57 @@
 		<title>Financial App</title>
 	</head>
 	
-	<body>
-		<h1>Aquí vamos!</h1>
-		<script src="public/js/vendor/jquery-1.11.2.min.js"></script>
-		<script src="public/js/vendor/underscore-min.js"></script>
-		<script src="public/js/vendor/backbone-min.js"></script>
+	<body id="app">
+
+		<div class="expenses">
+			<h1>GASTOS</h1>
+		</div>
+
+		<div class="detail">
+			<h1>GASTO DETALLADO</h1>
+		</div>
+
+		<div class="new_expense">
+			<h1>NUEVO GASTO</h1>
+			<form>
+				<div>
+					<input type="text" id="input_description" placeholder="Descripción" />
+				</div>
+				<div>
+					<input type="text" id="input_amount" placeholder="Cantidad" />
+				</div>
+				<div>
+					<button class="btn" id="create">Crear</button>
+				</div>
+			</form>
+		</div>
+
+		<script type="text/template" id="tplShowExpense">
+			<h3><%= description %></h3>
+			<em><%= amount %></em>
+			<button class="delete btn">Eliminar</button>
+		</script>
+
+		<script type="text/template" id="tplShowDetailExpense">
+			<h3><%= description %></h3>
+			<em><%= amount %></em>
+			<button class="backToExpenses btn"> Atrás </button>
+		</script>
+
+		<script type="text/javascript">
+			window.stade = '';
+			window.expenseId = '';
+		</script>
+
+		<script type="text/javascript" src="public/js/vendor/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="public/js/vendor/underscore.js"></script>
+		<script type="text/javascript" src="public/js/vendor/backbone.js"></script>
+
+		<script type="text/javascript" src="public/js/backbone/models/expense.js"></script>
+		<script type="text/javascript" src="public/js/backbone/collections/expenses.js"></script>
+		<script type="text/javascript" src="public/js/backbone/views/views.js"></script>
+		<script type="text/javascript" src="public/js/backbone/routes/routes.js"></script>
+		<script type="text/javascript" src="public/js/init.js"></script>
 	</body>
 
 </html>
