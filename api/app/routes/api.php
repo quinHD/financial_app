@@ -21,7 +21,7 @@
 		$expense = run_select( $id );
 		
 		if( $expense )
-			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense )));
+			$app -> response -> body( json_encode( $expense ));
 		else
 			$app -> response -> body( json_encode( array( "answer" => -1 )));	
 
