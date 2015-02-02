@@ -75,7 +75,7 @@
 	   		$id_inserted = $this -> populate_db( $original_expense );
 
 		   	$response = $this -> execute_http_call( "PUT", $new_fields, $id_inserted );
-			$answer_received = $response[ "answer" ];
+			$answer_received = $response;
 
   			$this -> assertEquals( $expected_answer, $answer_received );  
 	    }
