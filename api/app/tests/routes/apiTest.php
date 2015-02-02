@@ -84,13 +84,13 @@
 	    public function test_Delete_Expense_Removes_An_Expense_From_Givem_Id()
 	    {
 	    	$demo_expense = array( "description" => "Archivador", "amount" => 399 );
-	   		$expected_delete_answer = "OK";
+	   		$expected_delete_answer = 1;
 	   		$expected_get_answer = -1;
 
 	   		$id_inserted = $this -> populate_db( $demo_expense );
 
 	    	$response = $this -> execute_http_call( "DELETE", null, $id_inserted );
-	        $received_delete_answer = $response[ "answer" ];
+	        $received_delete_answer = $response;
 
 	        $response = $this -> execute_http_call( "GET", null, $id_inserted );
 	        $received_get_answer = $response;
