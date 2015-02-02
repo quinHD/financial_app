@@ -131,7 +131,7 @@
 	        $this -> remove_test_expense( $id_inserted_2 );
 	        $this -> remove_test_expense( $id_inserted_3 );
 			
-			$this -> assertEquals( count( $response ), $expected_number_rows );
+			$this -> assertGreaterThanOrEqual( $expected_number_rows, count( $response ));
 	    }
 
 	    private function populate_db( $expense )
