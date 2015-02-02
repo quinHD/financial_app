@@ -104,9 +104,7 @@
 		$rows = $dbh -> rowCount();
 		$connection = null;
 
-		$response = array( "expenses" => $expenses, "rows" => $rows );
-
-		return $response;
+		return $expenses;
 	}
 
 	function run_insert( $description, $amount )
