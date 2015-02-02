@@ -8,6 +8,8 @@
 	   		$minimum_id_value = 1;
 
 		    $response = $this -> execute_http_call( "POST", $new_expense );
+
+		    $this -> remove_test_expense( $response );
 		    
    			$this -> assertGreaterThanOrEqual( $minimum_id_value,  $response );
 	    }
@@ -30,6 +32,8 @@
 
 	    	$response = $this -> execute_http_call( "GET", null, $id_inserted );
 	        $expense_received = $response;
+
+	        $this -> remove_test_expense( $id_inserted );
 
    			$this -> assertEquals( $expected_expense[ "description" ], $expense_received[ "description" ] );
    			$this -> assertEquals( $expected_expense[ "amount" ], $expense_received[ "amount" ] ); 
@@ -61,6 +65,8 @@
 			$response = $this -> execute_http_call( "GET", null, $id_inserted );
 			$expense_received = $response;
 
+			$this -> remove_test_expense( $id_inserted );
+
 			$this -> assertEquals( $expected_answer, $answer_received);
    			$this -> assertEquals( $expected_expense[ "description" ], $expense_received[ "description" ] );
    			$this -> assertEquals( $expected_expense[ "amount" ], $expense_received[ "amount" ] ); 
@@ -76,6 +82,8 @@
 
 		   	$response = $this -> execute_http_call( "PUT", $new_fields, $id_inserted );
 			$answer_received = $response;
+
+			$this -> remove_test_expense( $id_inserted );
 
   			$this -> assertEquals( $expected_answer, $answer_received );  
 	    }
@@ -112,15 +120,9 @@
 
 	    public function test_Get_Expenses_Returns_All_The_Expenses()
 	    {
-	   		$expected_answer = "OK";
-
 	        $response = $this -> execute_http_call( "GET", null );
-	        $answer_received = $response[ "answer" ];
-	        $content_received = $response[ "content" ];
-	        $rows_received = $response[ "rows" ];
 			
-			$this -> assertEquals( $expected_answer, $answer_received );
-   			$this -> assertEquals( count( $content_received ), $rows_received );
+			$this -> assertNotEmpty( $response );
 	    }
 
 	    private function populate_db( $expense )
@@ -129,6 +131,11 @@
 	    	$id_returned = $response;
 
 	    	return $id_returned;
+	    }
+
+	    private function remove_test_expense( $id )
+	    {
+	    	$response = $this -> execute_http_call( "DELETE", null, $id );
 	    }
 
 	    private function execute_http_call( $http_verb, $new_expense, $expense_id=null )
