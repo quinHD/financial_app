@@ -47,7 +47,7 @@
 		
 		if( argument_is_invalid( $description ) || argument_is_invalid( $amount ))
 		{
-			$app -> response -> body( json_encode( array( "answer" => -1 )));	
+			$app -> response -> body( json_encode( -1 ));	
 		}
 		else
 		{
