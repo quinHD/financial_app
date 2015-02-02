@@ -61,7 +61,7 @@
 		$row_count = run_delete( $id );
 
 		if ($row_count > 0)
-			$app -> response -> body( json_encode( array( "answer" => "OK" )));
+			$app -> response -> body( json_encode( 1 ));
 		else
 			$app -> response -> body( json_encode( array( "answer" => -1 )));
 
