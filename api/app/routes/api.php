@@ -8,7 +8,7 @@
 		try 
 		{
 			$expense_inserted_id = run_insert( $description, $amount );
-			$app -> response -> body( json_encode( array( "answer" => "OK", "content" => $expense_inserted_id )));
+			$app -> response -> body( $expense_inserted_id );
 		}
 		catch( PDOException $e )
 		{

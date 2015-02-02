@@ -9,7 +9,7 @@
 
 		    $response = $this -> execute_http_call( "POST", $new_expense );
 		    
-   			$this -> assertGreaterThanOrEqual( $minimum_id_value, $response );
+   			$this -> assertGreaterThanOrEqual( $minimum_id_value,  $response );
 	    }
 
 	   
@@ -36,7 +36,9 @@
 	        $response = curl_exec( $curl_handler );
 	        curl_close( $curl_handler );
 
-	        return $response;
+	        $response_decoded = json_decode( $response, true );
+
+	        return $response_decoded;
 	    }
 	}
 
