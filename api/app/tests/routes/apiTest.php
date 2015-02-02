@@ -118,16 +118,18 @@
    			$this -> assertEquals( $expected_answer, $received_answer );
 	    }
 
-	    public function test_Get_Expenses_Returns_All_The_Expenses()
+ 		public function test_Get_Expenses_Returns_All_The_Expenses()
 	    {
-	    	$expected_number_rows = 2;
+	    	$expected_number_rows = 3;
 	    	$id_inserted_1 = $this -> populate_db( array( "description" => "Proyector", "amount" => 599 ) );
-	    	$id_inserted_2 = $this -> populate_db( array( "description" => "Escritorio", "amount" => 300 ) );	    	
+	    	$id_inserted_2 = $this -> populate_db( array( "description" => "Escritorio", "amount" => 300 ) );
+	    	$id_inserted_3 = $this -> populate_db( array( "description" => "Lámpara", "amount" => 50 ) );
 
 	        $response = $this -> execute_http_call( "GET", null );
 
 	        $this -> remove_test_expense( $id_inserted_1 );
 	        $this -> remove_test_expense( $id_inserted_2 );
+	        $this -> remove_test_expense( $id_inserted_3 );
 			
 			$this -> assertEquals( count( $response ), $expected_number_rows );
 	    }
