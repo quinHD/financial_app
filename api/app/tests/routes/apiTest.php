@@ -31,12 +31,11 @@
 	    	$id_inserted = $this -> populate_db( $expected_expense );
 
 	    	$response = $this -> execute_http_call( "GET", null, $id_inserted );
-	        $expense_received = $response;
 
 	        $this -> remove_test_expense( $id_inserted );
 
-   			$this -> assertEquals( $expected_expense[ "description" ], $expense_received[ "description" ] );
-   			$this -> assertEquals( $expected_expense[ "amount" ], $expense_received[ "amount" ] ); 
+   			$this -> assertEquals( $expected_expense[ "description" ], $response[ "description" ] );
+   			$this -> assertEquals( $expected_expense[ "amount" ], $response[ "amount" ] ); 
 
 	    }
 
@@ -81,11 +80,9 @@
 	   		$id_inserted = $this -> populate_db( $original_expense );
 
 		   	$response = $this -> execute_http_call( "PUT", $new_fields, $id_inserted );
-			$answer_received = $response;
 
 			$this -> remove_test_expense( $id_inserted );
-
-  			$this -> assertEquals( $expected_answer, $answer_received );  
+  			$this -> assertEquals( $expected_answer, $response );  
 	    }
 
 
@@ -113,9 +110,8 @@
 	   		$expected_answer = -1;
 
 	    	$response = $this -> execute_http_call( "DELETE", null, 9999999 );
-	        $received_answer = $response;
 
-   			$this -> assertEquals( $expected_answer, $received_answer );
+   			$this -> assertEquals( $expected_answer, $response );
 	    }
 
  		public function test_Get_Expenses_Returns_All_The_Expenses()
