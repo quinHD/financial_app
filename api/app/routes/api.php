@@ -30,13 +30,7 @@
 	$app->get( "/expenses/", function() use( $app )
 	{
 		$response = run_select_all();
-
-		$response_array = array();
-		$response_array[ "answer" ] = "OK";
-		$response_array[ "content" ] = $response["expenses"];
-		$response_array[ "rows" ] = $response["rows"];
-
-		$app -> response -> body( json_encode( $response_array ));
+		$app -> response -> body( json_encode( $response ));
 
 	});
 
