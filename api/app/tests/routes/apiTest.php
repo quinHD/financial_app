@@ -120,9 +120,16 @@
 
 	    public function test_Get_Expenses_Returns_All_The_Expenses()
 	    {
+	    	$expected_number_rows = 2;
+	    	$id_inserted_1 = $this -> populate_db( array( "description" => "Proyector", "amount" => 599 ) );
+	    	$id_inserted_2 = $this -> populate_db( array( "description" => "Escritorio", "amount" => 300 ) );	    	
+
 	        $response = $this -> execute_http_call( "GET", null );
+
+	        $this -> remove_test_expense( $id_inserted_1 );
+	        $this -> remove_test_expense( $id_inserted_2 );
 			
-			$this -> assertNotEmpty( $response );
+			$this -> assertEquals( count( $response ), $expected_number_rows );
 	    }
 
 	    private function populate_db( $expense )
