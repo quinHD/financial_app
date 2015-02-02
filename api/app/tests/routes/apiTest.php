@@ -25,15 +25,12 @@
 	    public function test_Get_Expense_Returns_An_Expense_From_One_Given_Id()
 	    {	
 	    	$expected_expense = array( "description" => "Proyector", "amount" => 599 );
-	   		$expected_answer = "OK";
 	    	
 	    	$id_inserted = $this -> populate_db( $expected_expense );
 
 	    	$response = $this -> execute_http_call( "GET", null, $id_inserted );
-	        $expense_received = $response[ "content" ];
-	        $answer_received = $response[ "answer" ];
+	        $expense_received = $response;
 
-   			$this -> assertEquals( $expected_answer, $answer_received ); 
    			$this -> assertEquals( $expected_expense[ "description" ], $expense_received[ "description" ] );
    			$this -> assertEquals( $expected_expense[ "amount" ], $expense_received[ "amount" ] ); 
 
