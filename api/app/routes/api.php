@@ -2,8 +2,11 @@
 
 	$app->post( "/expenses/", function() use( $app )
 	{
-		$description = $app -> request -> post( "description" );
-		$amount		 = $app -> request -> post( "amount" );
+		$body = $app->request()->getBody();
+		$json = json_decode($body, true);
+
+		$description = $json["description"];
+		$amount		 = $json["amount"];
 
 		try 
 		{
@@ -36,8 +39,11 @@
 
 	$app->put( "/expenses/:id", function( $id ) use( $app )
 	{
-		$description = $app->request->put( "description" );
-		$amount 	 = $app->request->put( "amount" );
+		$body = $app->request()->getBody();
+		$json = json_decode($body, true);
+
+		$description = $json["description"];
+		$amount		 = $json["amount"];
 		
 		if( argument_is_invalid( $description ) || argument_is_invalid( $amount ))
 		{
