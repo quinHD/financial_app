@@ -52,7 +52,7 @@
 		else
 		{
 			run_update( $description, $amount, $id );
-			$app -> response -> body( json_encode( array( "answer" => "OK" )));
+			$app -> response -> body( json_encode( 1 ));
 		}
 	});
 
