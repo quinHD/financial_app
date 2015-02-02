@@ -42,9 +42,8 @@
 			$expense_id_to_get = -99;
 
 	    	$response = $this -> execute_http_call( "GET", null, $expense_id_to_get );
-	        $answer_received = $response;
 
-   			$this -> assertEquals( $expected_answer, $answer_received ); 
+   			$this -> assertEquals( $expected_answer, $response ); 
 	    }
 
 		public function test_Put_Change_Fields_Of_a_Given_Expense()
@@ -93,7 +92,7 @@
 	        $received_delete_answer = $response[ "answer" ];
 
 	        $response = $this -> execute_http_call( "GET", null, $id_inserted );
-	        $received_get_answer = $response[ "answer" ];
+	        $received_get_answer = $response;
 
    			$this -> assertEquals( $expected_delete_answer, $received_delete_answer );
    			$this -> assertEquals( $expected_get_answer, $received_get_answer ); 
