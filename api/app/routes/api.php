@@ -63,8 +63,7 @@
 		if ($row_count > 0)
 			$app -> response -> body( json_encode( 1 ));
 		else
-			$app -> response -> body( json_encode( array( "answer" => -1 )));
-
+			$app -> response -> body( json_encode( -1 ));
 	});
 
 
