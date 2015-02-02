@@ -105,7 +105,7 @@
 	   		$expected_answer = -1;
 
 	    	$response = $this -> execute_http_call( "DELETE", null, 9999999 );
-	        $received_answer = $response[ "answer" ];
+	        $received_answer = $response;
 
    			$this -> assertEquals( $expected_answer, $received_answer );
 	    }
