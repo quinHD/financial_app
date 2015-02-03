@@ -1,4 +1,5 @@
 <?php
+
 	function getConnection()
 	{
 		try 

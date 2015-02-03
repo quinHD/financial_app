@@ -2,12 +2,19 @@
 
 	$app->post( "/expenses/", function() use( $app )
 	{
-		$body = $app->request()->getBody();
+		$body = $app-> request() ->getBody();
+
 		$json = json_decode($body, true);
 
 		$description = $json["description"];
-		$amount		 = $json["amount"];
+		$amount		 = $json["amount"];	
 
+		if( $description == null || $amount == null)
+		{
+			$description = $app -> request -> post( "description" );
+			$amount		 = $app -> request -> post( "amount" );
+		}
+		
 		try 
 		{
 			$expense_inserted_id = run_insert( $description, $amount );
@@ -16,7 +23,7 @@
 		catch( PDOException $e )
 		{
 			$app -> response -> body( json_encode( -1));	
-		}		
+		}			
 	});
 
 	$app->get( "/expenses/:id", function( $id ) use( $app )
@@ -39,11 +46,8 @@
 
 	$app->put( "/expenses/:id", function( $id ) use( $app )
 	{
-		$body = $app->request()->getBody();
-		$json = json_decode($body, true);
-
-		$description = $json["description"];
-		$amount		 = $json["amount"];
+		$description = $app->request->put( "description" );
+		$amount 	 = $app->request->put( "amount" );
 		
 		if( argument_is_invalid( $description ) || argument_is_invalid( $amount ))
 		{

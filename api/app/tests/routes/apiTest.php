@@ -8,9 +8,8 @@
 	   		$minimum_id_value = 1;
 
 		    $response = $this -> execute_http_call( "POST", $new_expense );
-
 		    $this -> remove_test_expense( $response );
-		    
+
    			$this -> assertGreaterThanOrEqual( $minimum_id_value,  $response );
 	    }
 
