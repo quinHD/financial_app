@@ -2,49 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,400' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="public/css/style.css">
 		<title>Financial App</title>
 	</head>
 	
 	<body id="app">
+		<header>
+			<h1>Financial App <span>Antevenio Test</span></h1>
+		</header>
 
-		<div class="expenses">
-			<h1>GASTOS</h1>
-		</div>
-
-		<div class="detail">
-			<h1>GASTO DETALLADO</h1>
-		</div>
-
-		<div class="new_expense">
-			<h1>NUEVO GASTO</h1>
-			<form>
-				<div>
+		<article class="expenses_application">
+			<section class="new_expense">
+				<h2>NUEVO GASTO</h2>
+				<form>
 					<input type="text" id="input_description" placeholder="Descripción" />
-				</div>
-				<div>
-					<input type="text" id="input_amount" placeholder="Cantidad" />
-				</div>
-				<div>
+					<input type="text" id="input_amount" placeholder="Euros" />
 					<button class="btn" id="create">Crear</button>
+				</form>
+			</section>
+			<section class="expenses_container">
+				<h2>GASTOS</h2>
+				<div class="expenses">
 				</div>
-			</form>
-		</div>
+			</section>
+		</article>
 
 		<script type="text/template" id="tplShowExpense">
-			<h3><%= description %></h3>
-			<em><%= amount %></em>
-			<button class="delete btn">Eliminar</button>
-		</script>
-
-		<script type="text/template" id="tplShowDetailExpense">
-			<h3><%= description %></h3>
-			<em><%= amount %></em>
-			<button class="backToExpenses btn"> Atrás </button>
-		</script>
-
-		<script type="text/javascript">
-			window.stade = '';
-			window.expenseId = '';
+			<div class="expense">
+				<h3><%= description %><button class="delete btn">Eliminar</button></h3>
+				<em><%= amount %> €</em>
+			</div>
 		</script>
 
 		<script type="text/javascript" src="public/js/vendor/jquery-1.11.2.min.js"></script>

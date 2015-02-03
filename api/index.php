@@ -5,8 +5,6 @@
 
     $app = new \Slim\Slim();
 
-    define( "ACCESS_GRANTED", true );
-
     require 'app/libs/connect.php';
     require 'app/routes/api.php';
 

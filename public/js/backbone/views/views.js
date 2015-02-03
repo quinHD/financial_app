@@ -37,7 +37,6 @@ app.ShowExpenseView = Backbone.View.extend({
 	template: _.template( $( '#tplShowExpense').html() ),
 
 	events: {
-		'click h3': 'detail',
 		'click .delete': 'deleteExpense'
 	},
 
@@ -50,54 +49,12 @@ app.ShowExpenseView = Backbone.View.extend({
 		app.Route.on( 'route:expense', function(){
 			self.render();
 		});
-
-		app.Route.on( 'route:detail', function(){
-			self.render();
-		});
-	},
-
-	render: function() {
-		if( window.stade === "expense")
-		{
-			$('.expenses').show();
-			$('.detail').hide();
-			this.$el.html( this.template( this.model.toJSON() ));
-		}else if( window.stade === 'detail' )
-		{
-			$('.detail').show();
-			$('.expenses').hide();
-			if(this.model.get('id') === window.expenseId){
-
-				new app.DetailExpenseView({model: this.model});
-			}
-		}
-		return this;
-	},
-
-	detail: function() {
-		Backbone.history.navigate('expenses/' + this.model.get('id'), {trigger: true} );
-	}
-});
-
-app.DetailExpenseView = Backbone.View.extend({
-	el: ".detail",
-	template: _.template( $( '#tplShowDetailExpense').html() ),
-
-	events: {
-		'click .backToExpenses': 'backToExpenses'
-	},
-
-	initialize: function() {
-		this.render();
 	},
 
 	render: function() {
 		this.$el.html( this.template( this.model.toJSON() ));
-	},
-
-	backToExpenses: function() {
-		Backbone.history.navigate('', {trigger:true})
+		
+		return this;
 	}
-
-
 });
+

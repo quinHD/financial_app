@@ -6,12 +6,6 @@ var routes = Backbone.Router.extend({
 		'expenses/:id': 'detail'
 	},
 
-	detail: function( id ){
-		window.expenseId = id;
-		window.stade = 'detail';
-
-	},
-
 	expense: function(){
 		window.stade = 'expense';
 	}
