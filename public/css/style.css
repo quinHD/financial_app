@@ -63,7 +63,6 @@ form > * {
 	font-size: .9rem; 
 }
 
-
 #input_description {
 	width: 70%;
 }
@@ -85,20 +84,25 @@ form > * {
 	background-color: #222; 
 }
 
-.expense {
+.expenses > div {
 	margin: 0rem 1rem;
 	padding: 0.5rem 1rem;
 	border-bottom: 1px solid #999;
 }
 
-.expense > h3 {
+.expenses > div > h3 {
 	margin-top: 0rem;
 	margin-bottom: 0rem;
 }
-.expense > em {
+.expenses > div > em {
 	margin-left: 1rem;
 	opacity: 0.8;
 }
+
+.expenses > div:last-child {
+	border-bottom: transparent;	
+}
+
 h3 > .btn {
 	margin-top: .5rem;
 	padding: .5rem 1rem;
