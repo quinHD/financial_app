@@ -42,7 +42,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-vendor/composer
-vendor/sebastian
-vendor/symfony
+vendor
+api/Slim
 !public/js/vendor
