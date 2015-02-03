@@ -41,7 +41,3 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-
-vendor
-api/Slim
-!public/js/vendor
